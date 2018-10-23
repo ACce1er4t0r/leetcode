@@ -2,6 +2,19 @@
 #include <vector>
 using namespace std;
 
+class HammingDistance {  //Problem 461
+public:
+    int hammingDistance(int x, int y) {
+        int z = x ^ y;
+        int hammingDistance = 0;
+        while (z != 0) {
+            hammingDistance++;
+            z = z & (z - 1);
+        }
+        return hammingDistance;
+    }
+};
+
 class ToLowerCase {  // Problem 709
 public:
     string toLowerCase(string str) {
