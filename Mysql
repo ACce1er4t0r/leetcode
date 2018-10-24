@@ -1,0 +1,11 @@
+-- 182.Duplicate Emails
+select Email from Person group by Email having count(*) > 1
+
+-- 595.Big Countries
+select name, population, area from World where area > 3000000 or population > 25000000
+
+-- 620.Not Boring Movies
+select * from cinema where description != "boring" and mod(id, 2) = 1 order by rating desc
+
+-- 627.Swap Salary
+update salary set sex = if(sex = 'm', 'f','m');
