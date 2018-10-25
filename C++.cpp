@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <set>
 using namespace std;
 
 
@@ -37,6 +38,50 @@ public:
             z = z & (z - 1);
         }
         return hammingDistance;
+    }
+};
+
+class KeyboardRow {  // Problem 500
+public:
+    vector<string> findWords(vector<string>& words) {
+        vector<string> result;
+        vector<set<char>> v(3);
+        string s1 = "QWERTYUIOPqwertyuiop", s2 = "ASDFGHJKLasdfghjkl", s3 = "ZXCVBNMzxcvbnm";
+        for (unsigned int i = 0; i < s1.length(); i++) {
+            v[0].insert(s1[i]);
+        }
+        for (unsigned int i = 0; i < s2.length(); i++) {
+            v[1].insert(s2[i]);
+        }
+        for (unsigned int i = 0; i < s3.length(); i++) {
+            v[2].insert(s3[i]);
+        }
+        for (unsigned int i = 0; i < words.size(); i++) {
+            int tag = -1;
+            bool flag = true;
+            if (words[i].length() == 0) {
+                continue;
+            }
+            if (v[0].find(words[i][0]) != v[0].end()) {
+                tag = 0;
+            }
+            if (v[1].find(words[i][0]) != v[1].end()) {
+                tag = 1;
+            }
+            if (v[2].find(words[i][0]) != v[2].end()) {
+                tag = 2;
+            }
+            for (int j = 1; j < words[i].length(); j++) {
+                if (v[tag].find(words[i][j]) == v[tag].end()) {
+                    flag = false;
+                    break;
+                }
+            }
+            if (flag == true) {
+                result.push_back(words[i]);
+            }
+        }
+        return result;
     }
 };
 
