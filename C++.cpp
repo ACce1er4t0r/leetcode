@@ -2,6 +2,24 @@
 #include <vector>
 using namespace std;
 
+
+class MaximumDepthofBinaryTree { // Problem 104 
+public:
+    struct TreeNode {
+            int val;
+            TreeNode *left;
+            TreeNode *right;
+            TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+        };
+
+    int maxDepth(TreeNode* root) {
+        if(root==NULL) return 0;
+        int leftdepth=maxDepth(root->left);
+        int rightdepth=maxDepth(root->right);
+        return (leftdepth>rightdepth ? leftdepth:rightdepth)+1 ;
+    }
+};
+
 class HammingDistance {  //Problem 461
 public:
     int hammingDistance(int x, int y) {
