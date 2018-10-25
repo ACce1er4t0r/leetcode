@@ -3,7 +3,7 @@
 using namespace std;
 
 
-class MaximumDepthofBinaryTree { // Problem 104 
+class MaximumDepthofBinaryTree { // Problem 104
 public:
     struct TreeNode {
             int val;
@@ -20,6 +20,13 @@ public:
     }
 };
 
+class NimGame {  // Problem 292
+public:
+    bool canWinNim(int n) {
+        return n % 4 != 0;
+    }
+};
+
 class HammingDistance {  //Problem 461
 public:
     int hammingDistance(int x, int y) {
@@ -30,6 +37,30 @@ public:
             z = z & (z - 1);
         }
         return hammingDistance;
+    }
+};
+
+class RobotReturntoOrigin {  // Problem 657
+public:
+    bool judgeCircle(string moves) {
+        int len = moves.length();
+        int x = 0, y = 0;
+        for(int i = 0; i < len; i++) {
+            if(moves[i] == 'U') {
+                y++;
+            } else if(moves[i] == 'D') {
+                y--;
+            } else if(moves[i] == 'R') {
+                x++;
+            } else {
+                x--;
+            }
+        }
+        if(x == 0 && y == 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 };
 
@@ -58,6 +89,15 @@ public:
             }
         }
         return res;
+    }
+};
+
+class PeakIndexinaMountainArray {  // Problem 852
+public:
+    int peakIndexInMountainArray(vector<int>& A) {
+        for (unsigned int i = 1; i < A.size() - 1; i++)
+            if (A[i] > A[i-1] && A[i] > A[i+1])
+                return i;
     }
 };
 
