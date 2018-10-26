@@ -21,6 +21,34 @@ public:
     }
 };
 
+/**
+ * Definition for a binary tree node.
+ *
+ */
+class InvertBinaryTree { // Problem 226
+    struct TreeNode {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+        TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    };
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root == NULL) {
+            return NULL;
+        }
+
+        TreeNode * tempNode = root->left;
+        root->left = root->right;
+        root->right = tempNode;
+
+        invertTree(root->left);
+        invertTree(root->right);
+
+        return root;
+    }
+};
+
 class NimGame {  // Problem 292
 public:
     bool canWinNim(int n) {
@@ -135,6 +163,24 @@ public:
     }
 };
 
+class MergeTwoBinaryTrees {  // Problem 617
+    struct TreeNode {
+        int val;
+        TreeNode *left;
+        TreeNode *right;
+        TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    };
+public:
+    TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) {
+        if(t1==NULL)return t2;
+        if(t2==NULL)return t1;
+        t1->val+=t2->val;
+        t1->left = mergeTrees(t1->left,t2->left);
+        t1->right = mergeTrees(t1->right,t2->right);
+        return t1;
+    }
+};
+
 class RobotReturntoOrigin {  // Problem 657
 public:
     bool judgeCircle(string moves) {
@@ -209,6 +255,25 @@ public:
             }
         }
         return res;
+    }
+};
+
+class UniqueMorseCodeWords {  //Problem 804
+public:
+    int uniqueMorseRepresentations(vector<string>& words) {
+        string morse[] = {".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."};
+        set<string> res;
+        for(unsigned int i = 0; i<words.size(); i++)
+        {
+            string tmp = "";
+            string cur = words[i];
+            for(unsigned int j = 0; j<cur.length(); j++)
+            {
+                tmp += morse[cur[j] - 'a'];
+            }
+            res.insert(tmp);
+        }
+        return res.size();
     }
 };
 
