@@ -28,6 +28,30 @@ public:
     }
 };
 
+class ReverseString {  //Problem 344
+public:
+    void my_swap(char *s, char *t)
+    {
+        char temp = *s;
+        *s = *t;
+        *t = temp;
+    }
+
+    string reverseString(string s) {
+        int length = s.size();
+        int i = 0;
+        int j = length - 1;
+
+        while (i < j)
+        {
+            my_swap(&s[i], &s[j]);
+            i++;
+            j--;
+        }
+        return s;
+    }
+};
+
 class HammingDistance {  //Problem 461
 public:
     int hammingDistance(int x, int y) {
@@ -71,7 +95,7 @@ public:
             if (v[2].find(words[i][0]) != v[2].end()) {
                 tag = 2;
             }
-            for (int j = 1; j < words[i].length(); j++) {
+            for (unsigned int j = 1; j < words[i].length(); j++) {
                 if (v[tag].find(words[i][j]) == v[tag].end()) {
                     flag = false;
                     break;
@@ -82,6 +106,32 @@ public:
             }
         }
         return result;
+    }
+};
+
+class ReverseWordsinaStringIII {  // Problem 557
+public:
+    string reverseWords(string s) {
+        int i = 0, j = 0, t1;
+        char t;
+        int s1 = s.size();
+        while(j < s1) {
+            while(s[j] != ' ' && j < s1) {
+                j++;
+            }
+            t1 = j + 1;
+            j--;
+            while(i < j) {
+                t = s[i];
+                s[i] = s[j];
+                s[j] = t;
+                i++;
+                j--;
+            }
+            i = t1;
+            j = t1 + 1;
+        }
+        return s;
     }
 };
 
@@ -118,6 +168,31 @@ public:
 		    str[i]= str[i] + ('a' - 'A');
         }
         return str;
+    }
+};
+
+class SelfDividingNumbers {  // Problem 728
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> ret;
+        for(int i = left; i <= right; i++) {
+            int temp = i;
+            int t = i;
+            while(temp != 0) {
+                if(t % 10 == 0) {
+                    break;
+                }
+                if(temp % (t % 10) != 0) {
+                    break;
+                } else {
+                    t = t / 10;
+                }
+                if(t == 0) {
+                    ret.push_back(temp);
+                }
+            }
+        }
+        return ret;
     }
 };
 
